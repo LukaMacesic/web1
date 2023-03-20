@@ -4,9 +4,14 @@ todos = get_todos()
 
 def add_todo():
     todo = st.session_state["new_todo"] + "\n"
-    todos.append(todo)
-    write_todos(todos)
-    st.session_state["new_todo"] = ""
+    if todo in todos:
+        st.write("You cant input todo that is already in todos")
+    elif todo == "":
+        st.write("Please write todo then press enter")
+    else:
+        todos.append(todo)
+        write_todos(todos)
+        st.session_state["new_todo"] = ""
 
 
 st.title("My Todo App")
